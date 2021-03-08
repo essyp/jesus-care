@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Schema::defaultStringLength(191); 
 
         $comm = Company::first();
         view()->share('comm',$comm);

@@ -225,7 +225,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="image" class="control-label col-lg-3">Product Image</label>
+                            <label for="image" class="control-label col-lg-3">Blog Image</label>
                             <div class="col-lg-6">
                                 <input class=" form-control" id="imgInp2" accept="image/*" name="image" type="file"/>
                             </div>
@@ -239,7 +239,7 @@
             <div class="modal-footer">
                 <input class=" form-control" id="editid" name="id" type="hidden" required="required"/>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
             </form>
         </div>

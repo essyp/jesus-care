@@ -110,7 +110,7 @@
                     </div>
                     @endforeach
                 </div>
-                <a href="{{url('ministries')}}" class="button-simple-primary mt-20">View All Ministry <i class="fas fa-arrow-right"></i></a>
+                <a href="{{url('ministry')}}" class="button-simple-primary mt-20">View All Ministry <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     @endif

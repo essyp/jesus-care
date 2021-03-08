@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2021 at 03:40 PM
+-- Generation Time: Mar 08, 2021 at 03:43 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `activity_logs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `action` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `computer_ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `session_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` int(11) NOT NULL DEFAULT 1,
@@ -158,10 +158,10 @@ INSERT INTO `activity_logs` (`id`, `user_id`, `action`, `computer_ip`, `session_
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `fname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tel` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -244,7 +244,7 @@ INSERT INTO `banners` (`id`, `image`, `link`, `title`, `description`, `button_na
 
 CREATE TABLE `blogs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -278,7 +278,7 @@ INSERT INTO `blogs` (`id`, `slug`, `title`, `description`, `image`, `video_id`, 
 CREATE TABLE `blog_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `featured` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -377,7 +377,7 @@ INSERT INTO `companies` (`id`, `fullname`, `shortname`, `email`, `email2`, `tel`
 
 CREATE TABLE `donations` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `ref_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ref_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `donor_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -434,7 +434,7 @@ INSERT INTO `enquiries` (`id`, `name`, `email`, `tel`, `message`, `status`, `cre
 
 CREATE TABLE `events` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -479,7 +479,7 @@ CREATE TABLE `event_images` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -526,7 +526,7 @@ INSERT INTO `galleries` (`id`, `event_id`, `image`, `status`, `created_by`, `cre
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -583,7 +583,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `ministries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -701,7 +701,7 @@ INSERT INTO `ordered_products` (`id`, `order_id`, `product_id`, `quantity`, `tot
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
-  `order_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -777,7 +777,7 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `transaction_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_id` int(11) DEFAULT NULL,
   `donation_id` int(11) DEFAULT NULL,
   `amount` double NOT NULL,
@@ -809,7 +809,7 @@ INSERT INTO `payments` (`id`, `transaction_id`, `order_id`, `donation_id`, `amou
 
 CREATE TABLE `payment_gateways` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `public_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `secret_key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -835,10 +835,10 @@ INSERT INTO `payment_gateways` (`id`, `slug`, `name`, `public_key`, `secret_key`
 
 CREATE TABLE `products` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` int(11) NOT NULL,
@@ -867,7 +867,7 @@ INSERT INTO `products` (`id`, `key`, `pname`, `cat_id`, `slug`, `description`, `
 CREATE TABLE `product_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -890,7 +890,7 @@ INSERT INTO `product_categories` (`id`, `name`, `slug`, `status`, `created_by`, 
 
 CREATE TABLE `programmes` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -921,7 +921,7 @@ INSERT INTO `programmes` (`id`, `slug`, `title`, `description`, `image`, `start_
 CREATE TABLE `teams` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -962,7 +962,7 @@ CREATE TABLE `testimonies` (
   `featured` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -984,11 +984,11 @@ INSERT INTO `testimonies` (`id`, `testifier`, `testimony`, `location`, `image`, 
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `ref_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ref_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `fname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tel` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
