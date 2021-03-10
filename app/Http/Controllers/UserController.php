@@ -27,7 +27,7 @@ class UserController extends Controller
 
     public function getAccount() {
         $user = User::where('id',Auth::guard('user')->user()->id)->first();
-        $order = Order::where('user_id',Auth::guard('user')->user()->id)->limit(5)->get();
+        $order = Order::where('user_id',Auth::guard('user')->user()->id)->orderBy('id','desc')->limit(5)->get();
         return view('user/account', compact('user','order'));
     }
 

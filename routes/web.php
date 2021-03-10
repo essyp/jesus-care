@@ -167,6 +167,7 @@ Route::group(['middleware' => ['web'], 'namespace' => 'App\Http\Controllers'], f
     Route::post('register-user', 'AuthController@registerUser');
     Route::view('login','front/login');
     Route::view('register','front/register');
+    Route::get('user-activation/{id}', 'HomeController@getUserActivation');
     Route::view('forgot-password','front/forgot-password');
     Route::get('reset-password/{id}', 'HomeController@getPasswordReset');
     Route::post('reset-password', 'HomeController@resetPassword');

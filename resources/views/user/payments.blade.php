@@ -41,9 +41,9 @@
                         <td>{{number_format($od->amount,2)}}</td>
                         <td>{{$od->gateway->name}}</td>
                         @if($od->status == SUCCESSFUL)
-                        <td><span style="color: green">successful</span></td>
+                        <td><span class="badge badge-success">successful</span></td>
                         @elseif($od->status == UNSUCCESSFUL)
-                        <td><span style="color: red">unsuccessful</span></td>
+                        <td><span class="badge badge-danger">unsuccessful</span></td>
                         @endif
                     </tr>
                     @endforeach

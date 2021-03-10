@@ -43,21 +43,21 @@
                         <td>{{number_format($od->total_amount,2)}}</td>
                         <td>{{$od->gateway->name}}</td>
                         @if($od->status == PROCESSING)
-                        <td><span style="color: orange">processing</span></td>
+                        <td><span class="badge badge-warning">processing</span></td>
                         @elseif($od->status == ACTIVE)
-                        <td><span style="color: green">active</span></td>
+                        <td><span class="badge badge-success">active</span></td>
                         @elseif($od->status == CANCELED)
-                        <td><span style="color: red">canceled</span></td>
+                        <td><span class="badge badge-danger">canceled</span></td>
                         @else
                         <td></td>
                         @endif
 
                         @if($od->payment_status == SUCCESSFUL)
-                        <td><span style="color: green">successful</span></td>
+                        <td><span class="badge badge-success">successful</span></td>
                         @elseif($od->payment_status == UNSUCCESSFUL)
-                        <td><span style="color: red">unsuccessful</span></td>
+                        <td><span class="badge badge-danger">unsuccessful</span></td>
                         @else
-                        <td><span style="color: red">failed</span></td>
+                        <td><span class="badge badge-danger">failed</span></td>
                         @endif
                         
                         <td><a href="javascript:void(0);" data-target="#order-view" data-toggle="modal" data-whatever="{{$od->id}}"><i class="fa fa-eye"></i></a></td>

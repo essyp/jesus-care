@@ -16,9 +16,10 @@ use GuzzleHttp\Client;
 use Carbon\Carbon;
 use Mail;
 use Session;
-
+use Illuminate\Support\Str;
 use App\Models\Admin;
 use App\Models\User;
+use App\Models\Company;
 
 class AuthController extends Controller
 {
@@ -133,26 +134,29 @@ class AuthController extends Controller
                 $number=str_replace('JSC-',"",$number);
                 $number=str_pad($number+1, 7, '0', STR_PAD_LEFT);
                 $ref_id='JSC-'.$number;
-                
             }
-            
+
+            $activation_link = $this->genActivationLink();
+            $link = url('/')."/user-activation/".$activation_link;
+
             $user = new User();
             $user->ref_id = $ref_id;
             $user->fname = $request->fname;
             $user->lname = $request->lname;
             $user->tel = $request->tel;
             $user->email = $request->email;
-            $user->status = ACTIVE;
+            $user->status = INACTIVE;
+            $user->activation_link = $activation_link;
             $user->password = bcrypt($request->password);
 
-                if($user->save()){
+            if($user->save()){
+                $this->ActivationMail("Account Activation",$request->email,$request->fname.' '.$request->lname,$link);
+            $response = array(
+                "status" => "success",
+                "message" => "Successful Registration. Please check your email to activate your account",
+            );
 
-                $response = array(
-                    "status" => "success",
-                    "message" => "Successful Registration. Thanks for registering with us",
-                );
-
-                return Response::json($response); //return status response as json
+            return Response::json($response); //return status response as json
             } else {
                 $response = array(
                     "status" => "Unsuccessfull",
@@ -161,6 +165,30 @@ class AuthController extends Controller
                 return Response::json($response); //return status response as json
             }
         }
+    }
+
+    public function genActivationLink(){
+        $id = Str::random(20);
+        $validator = \Validator::make(['id'=>$id],['id'=>'unique:users,activation_link']);
+        if($validator->fails()){
+             return $this->genActivationLink();
+        }
+        return $id;
+    }
+
+    public function ActivationMail($subject,$email,$name,$link){
+        $data = array(
+                'link'=> $link,
+                'name'=> $name,
+                'email'=> $email,
+                'subject'=> $subject
+        );
+        Mail::send('mails/activation', $data, function($message)
+            use($email,$subject,$name,$link) {
+            $com = Company::first();
+            $message->from($com->email, $com->fullname);
+            $message->to($email, $name)->subject($subject);
+        });
     }
 
     public function loginUser(Request $request) {
@@ -185,17 +213,29 @@ class AuthController extends Controller
         $password = $request->password;
         isset($request->remember_me) ? $remember = true : $remember = false;
 
-        if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password, 'status' => ACTIVE], $remember)) {
-            // The user is active, not suspended, and exists.
-            $this->clearLoginAttempts($request);
-            $response = array("status" => "success", "message" => "Login Successful");
+        $check = User::where('email',$email)->first();
+        if($check){
+            if($check->activation_link != null){
+                $response = array("status" => "fail", "message" => "Account not yet activated!!");
+                return Response::json($response);
+            }
+
+            else if (Auth::guard('user')->attempt(['email' => $email, 'password' => $password, 'status' => ACTIVE], $remember)) {
+                // The user is active, not suspended, and exists.
+                $this->clearLoginAttempts($request);
+                $response = array("status" => "success", "message" => "Login Successful!!");
+                return Response::json($response);
+            }
+
+            $this->incrementLoginAttempts($request);
+            $this->forget_throttle_seconds();
+            $response = array("status" => "fail", "message" => "Wrong password or deactivated account!!");
+            return Response::json($response);
+
+        } else {
+            $response = array("status" => "fail", "message" => "Email does not exist!!");
             return Response::json($response);
         }
-
-        $this->incrementLoginAttempts($request);
-        $this->forget_throttle_seconds();
-        $response = array("status" => "fail", "message" => "Wrong email or password");
-        return Response::json($response);
     }
 
     public function logoutUser(Request $request) {

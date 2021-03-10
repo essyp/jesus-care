@@ -209,6 +209,7 @@ class HomeController extends Controller
         }
     
     }
+
     public function resetPasswordMail($subject,$email,$name){
         $data = array(
                 'name'=> $name,
@@ -221,6 +222,17 @@ class HomeController extends Controller
                 $message->from($com->email, $com->fullname);
             $message->to($email, $name)->subject($subject);
         });
+    }
+
+    public function getUserActivation($id) {
+        $user = User::where('activation_link',$id)->first();
+        if(!empty($user)){
+            $email = $user->email;
+            User::where('id',$user->id)->update(['status' => ACTIVE, 'activation_link' => null]);
+            return view('front/user-activation', compact('user','id','email'));
+        } else {
+            return redirect('login'); 
+        }
     }
 
     public function getOrderView(Request $request){

@@ -58,16 +58,18 @@
                             <td>{{date("d F, Y",strtotime($od->created_at))}}</td>
                             <td>{{number_format($od->total_amount,2)}}</td>
                             @if($od->payment_status == SUCCESSFUL)
-                            <td><span style="color: green">successful</span></td>
-                            @elseif($od->payment_status == UNSUCESSFUL)
-                            <td><span style="color: red">unsuccessful</span></td>
+                            <td><span class="badge badge-success">successful</span></td>
+                            @elseif($od->payment_status == UNSUCCESSFUL)
+                            <td><span class="badge badge-danger">unsuccessful</span></td>
+                            @else
+                            <td><span class="badge badge-danger">failed</span></td>
                             @endif
                         </tr>
                         @endforeach
                        </tbody>
                     </table>
                     <div class="text-right">
-                        <a href="{{url('user/orders')}}" class="button-md button-primary">View All My Transactions</a>
+                        <a href="{{url('user/orders')}}" class="button-md button-primary">View All Orders</a>
                     </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@
                     <tbody>
                         <tr>
                             <td><b>Dear {{$name}},</b>
-                                <p>Pleas use the below link to reset your password;</p>
+                                <p>Please use the below link to reset your password;</p>
                                 <p><a href="{{$link}}" target="_blank" class="btn btn-primary">Reset Password</a></p>
                                 <b>- Thanks ({{$comm->shortname}} Team)</b> </td>
                         </tr>

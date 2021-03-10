@@ -20,9 +20,9 @@
                  <div class="row">
                          <label class="col-md-5 control-label">Payment Status:</label>
                          @if($order->payment_status==SUCCESSFUL)
-                         <div class="col-md-7"><span style="color: green">Successful</span></div>
+                         <div class="col-md-7"><span class="badge badge-success">Successful</span></div>
                          @else
-                         <div class="col-md-7"><span style="color: red">Unsuccessful</span></div>
+                         <div class="col-md-7"><span class="badge badge-danger">Unsuccessful</span></div>
                          @endif
                  </div>
                  @if($ref)<div class="row">
@@ -32,9 +32,9 @@
                  <div class="row">
                     <label class="col-md-5 control-label">Order Status:</label>
                     @if($order->status==PROCESSED)
-                    <div class="col-md-7"><span style="color: blue">Processed</span></div>
+                    <div class="col-md-7"><span class="badge badge-info">Processed</span></div>
                     @else
-                    <div class="col-md-7"><span style="color: orange">processing</span></div>
+                    <div class="col-md-7"><span class="badge badge-warning">processing</span></div>
                     @endif
                 </div>
 

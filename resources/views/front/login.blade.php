@@ -73,12 +73,12 @@
 			type: 'POST',
 			success: function(data){
 				if(data.status == "success"){
-                    toastr.success(data.message, data.status);
+                    toastr.success(data.message);
                     setTimeout("window.location.href='{{url('user/account')}}';");
 					//window.setTimeout(function(){location.reload();},2000);
                     close_loader('#page');
                     } else{
-                        toastr.error(data.message, data.status);
+                        toastr.error(data.message);
                         close_loader('#page');
                     }
 			},

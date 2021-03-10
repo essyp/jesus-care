@@ -1,6 +1,6 @@
 <div class="col-md-3 col-sm-12 col-12">
-    @if(!empty($user->image))
-    <img src="{{asset('images/users/'.$user->image)}}" style="max-height: 70px; max-width: 70px; border-radius: 50px; float: right">
+    @if(!empty($user->avatar))
+    <img src="{{asset('images/users/'.$user->avatar)}}" style="max-height: 70px; max-width: 70px; border-radius: 50px; float: right">
     @else
     <img src="{{asset('images/avatar.png')}}" style="max-height: 70px; max-width: 70px; border-radius: 50px; float: right">
     @endif
